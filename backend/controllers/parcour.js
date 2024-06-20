@@ -1,8 +1,8 @@
 import connectDB from '../config/db.js';
 
-export const getProjects = async (req, res) => {
+export const getParcour = async (req, res) => {
     const dbConnection = connectDB();
-    const reqSql = 'SELECT * FROM projects';
+    const reqSql = 'SELECT * FROM parcour';
 
     try {
         dbConnection.query(reqSql, (error, results) => {
