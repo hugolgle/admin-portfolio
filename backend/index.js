@@ -1,37 +1,20 @@
 import express from 'express';
-import mysql from 'mysql';
+import connectDB from './config/db.js';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import projectsRouter from './routes/projects.js';
 
-const port = process.env.PORT || 5001;
+dotenv.config();
 
 const app = express();
+const port = process.env.PORT || 5001;
 
+connectDB();
 
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => {
-    const connexion = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "root",
-        database: "portfolio",
-        socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock"
-    })
+app.use("/projects", projectsRouter);
 
-    connexion.connect((err) => {
-        if (err) {
-            console.log("erreur de connexion", err.stack)
-            return;
-        }
-        console.log("Connexion reussi à la bdd !");
-    })
-
-    connexion.query("SELECT * FROM xpPro", (err, rows, fields) => {
-        if (err) throw err;
-        res.json(rows)
-    })
-
-    connexion.end();
-})
-
-app.listen(port, () => {
-    console.log("Le serveur est en ligne !");
-});
+app.listen(port, () => console.log(`Le serveur a démarré au port ${port}`));
