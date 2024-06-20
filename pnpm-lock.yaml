@@ -26,6 +26,9 @@ importers:
       express:
         specifier: ^4.19.2
         version: 4.19.2
+      lucide-react:
+        specifier: ^0.395.0
+        version: 0.395.0(react@18.3.1)
       mysql:
         specifier: ^2.18.1
         version: 2.18.1
@@ -1390,6 +1393,11 @@ packages:
   lru-cache@8.0.5:
     resolution: {integrity: sha512-MhWWlVnuab1RG5/zMRRcVGXZLCXrZTgfwMikgzCegsPnG62yDQo5JnqKkrK4jO5iKqDAZGItAqN5CtKBCBWRUA==}
     engines: {node: '>=16.14'}
+
+  lucide-react@0.395.0:
+    resolution: {integrity: sha512-6hzdNH5723A4FLaYZWpK50iyZH8iS2Jq5zuPRRotOFkhu6kxxJiebVdJ72tCR5XkiIeYFOU5NUawFZOac+VeYw==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0
 
   media-typer@0.3.0:
     resolution: {integrity: sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==}
@@ -3512,6 +3520,10 @@ snapshots:
   lru-cache@7.18.3: {}
 
   lru-cache@8.0.5: {}
+
+  lucide-react@0.395.0(react@18.3.1):
+    dependencies:
+      react: 18.3.1
 
   media-typer@0.3.0: {}
 

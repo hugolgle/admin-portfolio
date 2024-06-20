@@ -15,7 +15,7 @@ export function getXpPro() {
     return xpPro;
 }
 
-export function getParcour() {
-    const parcour = useSelector((state) => state.parcourReducer || []);
-    return parcour;
+export function getParcours() {
+    const parcours = useSelector((state) => state.parcoursReducer || []);
+    return parcours;
 }

@@ -6,11 +6,11 @@ import store, { persistor } from './redux/store.js';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { getProjects } from './redux/actions/project.action';
-import { getParcour } from './redux/actions/parcour.action.js';
+import { getParcours } from './redux/actions/parcours.action.js';
 import { getAbout } from './redux/actions/about.action.js';
 import { getXpPro } from './redux/actions/xpPro.action.js';
 store.dispatch(getProjects())
-store.dispatch(getParcour())
+store.dispatch(getParcours())
 store.dispatch(getAbout())
 store.dispatch(getXpPro())
 

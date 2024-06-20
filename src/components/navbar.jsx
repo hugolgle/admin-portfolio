@@ -18,7 +18,7 @@ export default function Navbar() {
                     <Link to="/" className=' absolute mt-3 top-0 p-5 bg-white text-2xl rounded'>ADMIN</Link>
                     <div className='flex flex-col justify-between gap-1 w-full'>
                         <Link to="/about" className={`my-1 py-2 rounded hover:bg-zinc-300 transition-all ${activeLink.startsWith('/about') ? 'bg-zinc-300' : 'bg-zinc-200'}`}>Présentation</Link>
-                        <Link to="/parcour" className={`my-1 py-2 rounded hover:bg-zinc-300 transition-all ${activeLink.startsWith('/parcour') ? 'bg-zinc-300' : 'bg-zinc-200'}`}>Parcour</Link>
+                        <Link to="/parcours" className={`my-1 py-2 rounded hover:bg-zinc-300 transition-all ${activeLink.startsWith('/parcours') ? 'bg-zinc-300' : 'bg-zinc-200'}`}>Parcours</Link>
                         <Link to="/projects" className={`my-1 py-2 rounded text-nowrap hover:bg-zinc-300 transition-all ${activeLink.startsWith('/projects') ? 'bg-zinc-300' : 'bg-zinc-200'}`}>Réalisations</Link>
                         <Link to="/skills" className={`my-1 py-2 rounded text-nowrap hover:bg-zinc-300 transition-all ${activeLink.startsWith('/skills') ? 'bg-zinc-300' : 'bg-zinc-200'}`}>Compétences</Link>
                         <Link to="/xppro" className={`my-1 py-2 rounded text-nowrap hover:bg-zinc-300 transition-all ${activeLink.startsWith('/xppro') ? 'bg-zinc-300' : 'bg-zinc-200'}`}>Experience pro</Link>

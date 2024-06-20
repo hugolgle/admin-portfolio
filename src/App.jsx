@@ -5,10 +5,11 @@ import './App.css'
 import Home from './pages/home';
 import About from './pages/about';
 import Project from './pages/project';
-import Parcour from './pages/parcour';
+import Parcours from './pages/parcours';
 import XpPro from './pages/xpPro';
 import Skills from './pages/skills';
 import Navbar from './components/navbar';
+import AddParcours from './pages/pageAdd/addParcours';
 
 function App() {
 
@@ -26,8 +27,12 @@ function App() {
           element: <About />,
         },
         {
-          path: '/parcour',
-          element: <Parcour />,
+          path: '/parcours',
+          element: <Parcours />,
+        },
+        {
+          path: '/parcours/add',
+          element: <AddParcours />,
         },
         {
           path: '/projects',
