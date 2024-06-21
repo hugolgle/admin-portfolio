@@ -10,6 +10,11 @@ import XpPro from './pages/xpPro';
 import Skills from './pages/skills';
 import Navbar from './components/navbar';
 import AddParcours from './pages/pageAdd/addParcours';
+import UnParcours from './pages/unParcours';
+import UnProject from './pages/unProject';
+import AddProject from './pages/pageAdd/addProject';
+import UnXpPRo from './pages/unXpPro';
+import AddXpPro from './pages/pageAdd/addXpPro';
 
 function App() {
 
@@ -35,12 +40,32 @@ function App() {
           element: <AddParcours />,
         },
         {
+          path: '/parcours/:id',
+          element: <UnParcours />,
+        },
+        {
           path: '/projects',
           element: <Project />,
         },
         {
+          path: '/projects/add',
+          element: <AddProject />,
+        },
+        {
+          path: '/projects/:id',
+          element: <UnProject />,
+        },
+        {
           path: '/xpPro',
           element: <XpPro />,
+        },
+        {
+          path: '/xpPro/add',
+          element: <AddXpPro />,
+        },
+        {
+          path: '/xpPro/:id',
+          element: <UnXpPRo />,
         },
         {
           path: '/skills',

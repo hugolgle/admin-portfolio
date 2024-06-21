@@ -1,8 +1,9 @@
 import express from 'express';
-import { getXpPro } from '../controllers/xpPro.js';
+import { addXpPro, getXpPro } from '../controllers/xpPro.js';
 
 const router = express.Router();
 
 router.get("/", getXpPro);
+router.post("/", addXpPro);
 
 export default router;
