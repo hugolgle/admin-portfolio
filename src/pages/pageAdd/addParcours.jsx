@@ -40,8 +40,8 @@ function AddParcours() {
     return <>
         <h1 className="text-5xl font-thin">Ajouter un parcours</h1>
         <form onSubmit={handleSubmit} className='flex flex-col justify-center items-center gap-5 px-36 py-10'>
-            <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedDate} type="text" name="" maxLength={50} id="" placeholder="Date" onChange={(e) => { handleDate(e); }} required />
-            <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedDescription} type="text" name="" maxLength={50} id="" placeholder="Description" onChange={(e) => { handleDescription(e); }} required />
+            <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedDate} type="text" name="" id="" placeholder="Date" onChange={(e) => { handleDate(e); }} required />
+            <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedDescription} type="text" name="" id="" placeholder="Description" onChange={(e) => { handleDescription(e); }} required />
             <button variant="outline" className="rounded-xl w-1/4 hover:border-blue-500">Envoyer</button>
         </form>
     </>
