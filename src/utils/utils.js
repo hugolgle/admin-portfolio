@@ -5,6 +5,11 @@ export function getProjects() {
     return projects;
 }
 
+export function getProjectById(id) {
+    const projects = useSelector((state) => state.projectReducer || []);
+    return projects.find((project) => project.id === parseInt(id));
+}
+
 export function getAbout() {
     const about = useSelector((state) => state.aboutReducer || []);
     return about;
