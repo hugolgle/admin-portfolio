@@ -4,10 +4,12 @@ import { useDispatch } from "react-redux"
 
 
 import { addProject, getProjects } from '../../redux/actions/project.action';
+import { useNavigate } from 'react-router-dom';
 
 function AddProject() {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const [selectedEcole, setSelectedEcole] = useState("");
 
@@ -39,6 +41,7 @@ function AddProject() {
         try {
             await dispatch(addProject(postData));
             dispatch(getProjects());
+            navigate("/projects")
 
         } catch (err) {
             console.log("Une erreur s'est produite lors de l'ajout du projet", err);
