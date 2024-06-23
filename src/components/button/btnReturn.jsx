@@ -11,7 +11,7 @@ function BtnReturn() {
     };
 
     return (
-        <CircleArrowLeft className="cursor-pointer absolute top-2 right-2 hover:scale-125 ease-in-out duration-300" onClick={handleGoBack} />
+        <CircleArrowLeft className="cursor-pointer absolute top-2 left-2 hover:scale-125 ease-in-out duration-300" onClick={handleGoBack} />
     )
 }
 
