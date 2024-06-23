@@ -1,6 +1,6 @@
 import connectDB from '../config/db.js';
 
-export const getXpPro = async (req, res) => {
+export const getXpPros = async (req, res) => {
     const dbConnection = connectDB();
     const reqSql = 'SELECT * FROM xpPro';
 
@@ -34,6 +34,51 @@ export const addXpPro = async (req, res) => {
     } catch (error) {
         console.error('Erreur dans le bloc try-catch:', error);
         return res.status(500).json({ message: "Erreur lors de l'ajout de l'expérience professionnelle", error });
+    } finally {
+        dbConnection.end();
+    }
+};
+
+export const editXpPro = async (req, res) => {
+    const dbConnection = connectDB();
+    const { id } = req.params;
+    const { contrat, domaine, annee, titre, mission } = req.body;
+    const updateSql = 'UPDATE xpPro SET contrat = ?, domaine = ?, annee = ?, titre = ?, mission = ? WHERE id = ?';
+
+    try {
+        dbConnection.query(updateSql, [contrat, domaine, annee, titre, mission, id], (error, results) => {
+            if (error) {
+                return res.status(500).json({ message: "Erreur lors de la mise à jour du XpPro", error });
+            }
+            if (results.affectedRows === 0) {
+                return res.status(404).json({ message: "XpPro non trouvé" });
+            }
+            return res.status(200).json({ message: "XpPro mis à jour avec succès" });
+        });
+    } catch (error) {
+        return res.status(500).json({ message: "Erreur lors de la mise à jour du XpPro", error });
+    } finally {
+        dbConnection.end();
+    }
+};
+
+export const deleteXpPro = async (req, res) => {
+    const dbConnection = connectDB();
+    const { id } = req.params;
+    const deleteSql = 'DELETE FROM xpPro WHERE id = ?';
+
+    try {
+        dbConnection.query(deleteSql, [id], (error, results) => {
+            if (error) {
+                return res.status(500).json({ message: "Erreur lors de la suppression du XpPro", error });
+            }
+            if (results.affectedRows === 0) {
+                return res.status(404).json({ message: "XpPro non trouvé" });
+            }
+            return res.status(200).json({ message: "XpPro supprimé avec succès" });
+        });
+    } catch (error) {
+        return res.status(500).json({ message: "Erreur lors de la suppression du XpPro", error });
     } finally {
         dbConnection.end();
     }

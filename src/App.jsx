@@ -7,13 +7,12 @@ import About from './pages/about';
 import Project from './pages/project';
 import Parcours from './pages/parcours';
 import XpPro from './pages/xpPro';
-import Skills from './pages/skills';
 import Navbar from './components/navbar';
 import AddParcours from './pages/pageAdd/addParcours';
-import UnParcours from './pages/unParcours';
-import UnProject from './pages/unProject';
+import UnParcours from './pages/pageById/unParcours';
+import UnProject from './pages/pageById/unProject';
 import AddProject from './pages/pageAdd/addProject';
-import UnXpPRo from './pages/unXpPro';
+import UnXpPro from './pages/pageById/unXpPro';
 import AddXpPro from './pages/pageAdd/addXpPro';
 
 function App() {
@@ -65,11 +64,7 @@ function App() {
         },
         {
           path: '/xpPro/:id',
-          element: <UnXpPRo />,
-        },
-        {
-          path: '/skills',
-          element: <Skills />,
+          element: <UnXpPro />,
         },
       ]
     }

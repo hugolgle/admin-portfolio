@@ -1,14 +1,13 @@
 import React from 'react'
 import { getProjects } from '../utils/utils'
 import { Link } from 'react-router-dom'
-import { CirclePlus } from 'lucide-react'
+import BtnAdd from '../components/button/btnAdd'
 
 function Project() {
     const projects = getProjects()
     return <>
         <h1>Project</h1>
-        <Link className='absolute top-2 right-2' to="add"><CirclePlus className="hover:scale-125 ease-in-out duration-300" /></Link>
-
+        <BtnAdd />
         <div className='grid grid-cols-3 gap-4 mt-4'>
             {projects.map((project) => <>
                 <Link to={`${project.id}`} className='flex flex-row items-center bg-zinc-300 overflow-hidden rounded hover:scale-95 transition-all'>

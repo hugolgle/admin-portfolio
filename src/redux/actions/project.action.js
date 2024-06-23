@@ -5,7 +5,7 @@ export const ADD_PROJECT = "ADD_PROJECT";
 export const EDIT_PROJECT = "EDIT_PROJECT";
 export const DELETE_PROJECT = "DELETE_PROJECT";
 
-export const getProjects = () => {
+export const getAllProjects = () => {
     return (dispatch) => {
         return axios.get("http://localhost:5001/projects").then((res) => {
             dispatch({ type: GET_PROJECTS, payload: res.data });

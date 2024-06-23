@@ -2,6 +2,8 @@ import axios from 'axios';
 
 export const GET_PARCOURS = "GET_PARCOURS";
 export const ADD_PARCOURS = "ADD_PARCOURS";
+export const EDIT_PARCOURS = "EDIT_PARCOURS";
+export const DELETE_PARCOURS = "DELETE_PARCOURS";
 
 export const getParcours = () => {
     return (dispatch) => {
@@ -19,7 +21,30 @@ export const addParcours = (newParcours) => {
             })
             .catch((error) => {
                 console.error('Erreur lors de l\'ajout du parcours :', error);
-                // Vous pouvez également dispatche une action d'erreur ici si nécessaire
+            });
+    };
+};
+
+export const editParcours = (parcours) => {
+    return (dispatch) => {
+        return axios.put(`http://localhost:5001/parcours/${parcours.id}`, parcours)
+            .then((res) => {
+                dispatch({ type: EDIT_PARCOURS, payload: res.data });
+            })
+            .catch((error) => {
+                console.error("Error updating parcours:", error);
+            });
+    };
+};
+
+export const deleteParcours = (id) => {
+    return (dispatch) => {
+        return axios.delete(`http://localhost:5001/parcours/${id}`)
+            .then((res) => {
+                dispatch({ type: DELETE_PARCOURS, payload: id });
+            })
+            .catch((error) => {
+                console.error("Error deleting parcours:", error);
             });
     };
 };

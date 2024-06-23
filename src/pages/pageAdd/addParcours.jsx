@@ -3,10 +3,13 @@ import { useState } from 'react';
 import { useDispatch } from "react-redux"
 
 import { addParcours, getParcours } from '../../redux/actions/parcours.action';
+import { useNavigate } from 'react-router-dom';
+import BtnReturn from '../../components/button/btnReturn';
 
 function AddParcours() {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const [selectedDate, setSelectedDate] = useState("");
 
@@ -31,6 +34,7 @@ function AddParcours() {
         try {
             await dispatch(addParcours(postData));
             dispatch(getParcours());
+            navigate("/parcours")
 
         } catch (err) {
             console.log("Une erreur s'est produite lors de l'ajout du parcours", err);
@@ -39,6 +43,7 @@ function AddParcours() {
 
     return <>
         <h1 className="text-5xl font-thin">Ajouter un parcours</h1>
+        <BtnReturn />
         <form onSubmit={handleSubmit} className='flex flex-col justify-center items-center gap-5 px-36 py-10'>
             <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedDate} type="text" name="" id="" placeholder="Date" onChange={(e) => { handleDate(e); }} required />
             <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedDescription} type="text" name="" id="" placeholder="Description" onChange={(e) => { handleDescription(e); }} required />

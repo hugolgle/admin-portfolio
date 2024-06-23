@@ -15,12 +15,22 @@ export function getAbout() {
     return about;
 }
 
-export function getXpPro() {
+export function getXpPros() {
     const xpPro = useSelector((state) => state.xpProReducer || []);
     return xpPro;
+}
+
+export function getXpProById(id) {
+    const xpPros = useSelector((state) => state.xpProReducer || []);
+    return xpPros.find((xpPro) => xpPro.id === parseInt(id));
 }
 
 export function getParcours() {
     const parcours = useSelector((state) => state.parcoursReducer || []);
     return parcours;
+}
+
+export function getParcoursById(id) {
+    const parcours = useSelector((state) => state.parcoursReducer || []);
+    return parcours.find((parcours) => parcours.id === parseInt(id));
 }

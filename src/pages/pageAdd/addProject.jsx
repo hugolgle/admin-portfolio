@@ -3,8 +3,9 @@ import { useState } from 'react';
 import { useDispatch } from "react-redux"
 
 
-import { addProject, getProjects } from '../../redux/actions/project.action';
+import { addProject, getAllProjects } from '../../redux/actions/project.action';
 import { useNavigate } from 'react-router-dom';
+import BtnReturn from '../../components/button/btnReturn';
 
 function AddProject() {
 
@@ -40,7 +41,7 @@ function AddProject() {
 
         try {
             await dispatch(addProject(postData));
-            dispatch(getProjects());
+            dispatch(getAllProjects());
             navigate("/projects")
 
         } catch (err) {
@@ -50,6 +51,7 @@ function AddProject() {
 
     return <>
         <h1 className="text-5xl font-thin">Ajouter un projet</h1>
+        <BtnReturn />
         <form onSubmit={handleSubmit} className='flex flex-col justify-center items-center gap-5 px-36 py-10'>
             <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedEcole} type="text" name="" maxLength={50} id="" placeholder="Ecole" onChange={(e) => { handleEcole(e); }} required />
             <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedTitle} type="text" name="" maxLength={50} id="" placeholder="Titre" onChange={(e) => { handleTitle(e); }} required />
