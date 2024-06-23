@@ -66,11 +66,11 @@ function AddXpPro() {
         <h1 className="text-5xl font-thin">Ajouter un projet</h1>
         <BtnReturn />
         <form onSubmit={handleSubmit} className='flex flex-col justify-center items-center gap-5 px-36 py-10'>
-            <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedContrat} type="text" name="" maxLength={50} id="" placeholder="Contrat" onChange={(e) => { handleContrat(e); }} required />
-            <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedDomaine} type="text" name="" maxLength={50} id="" placeholder="Domaine" onChange={(e) => { handleDomaine(e); }} required />
-            <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedAnnee} type="text" name="" maxLength={50} id="" placeholder="Annee" onChange={(e) => { handleAnnee(e); }} required />
-            <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedTitre} type="text" name="" maxLength={50} id="" placeholder="Titre" onChange={(e) => { handleTitre(e); }} required />
-            <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedMission} type="text" name="" maxLength={50} id="" placeholder="Mission" onChange={(e) => { handleMission(e); }} required />
+            <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedContrat} type="text" name="" id="" placeholder="Contrat" onChange={(e) => { handleContrat(e); }} required />
+            <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedDomaine} type="text" name="" id="" placeholder="Domaine" onChange={(e) => { handleDomaine(e); }} required />
+            <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedAnnee} type="text" name="" id="" placeholder="Annee" onChange={(e) => { handleAnnee(e); }} required />
+            <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedTitre} type="text" name="" id="" placeholder="Titre" onChange={(e) => { handleTitre(e); }} required />
+            <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedMission} type="text" name="" id="" placeholder="Mission" onChange={(e) => { handleMission(e); }} required />
             <button variant="outline" className="rounded-xl w-1/4 hover:border-blue-500">Envoyer</button>
         </form>
     </>
