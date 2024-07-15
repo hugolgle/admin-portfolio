@@ -56,9 +56,15 @@ function UnParcours() {
     return <>
         <h2>Le parcours {leParcours.id}</h2>
         <BtnReturn />
-        <form onSubmit={handleEditSubmit} className='flex flex-col justify-center items-center gap-5 px-36 py-10'>
-            <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedDate} type="text" name="" id="" placeholder="Date" onChange={(e) => { handleDate(e); }} required />
-            <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedDescription} type="text" name="" id="" placeholder="Description" onChange={(e) => { handleDescription(e); }} required />
+        <form onSubmit={handleEditSubmit} className='flex flex-col justify-center items-center gap-5 px-36 py-10 w-1/2'>
+            <div className='flex w-full items-center'>
+                <label htmlFor="date" className='w-1/6'>Date : </label>
+                <input className="w-5/6 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedDate} type="text" name="" id="date" placeholder="Date" onChange={(e) => { handleDate(e); }} required />
+            </div>
+            <div className='flex w-full items-center'>
+                <label htmlFor="description" className='w-1/6'>Description : </label>
+                <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedDescription} type="text" name="" id="" placeholder="Description" onChange={(e) => { handleDescription(e); }} required />
+            </div>
             <button variant="outline" className="rounded-xl w-1/4 hover:border-blue-500">Modifier</button>
         </form>
         <button variant="outline" className="rounded-xl w-1/4 hover:border-red-500" onClick={handleDeleteSubmit}>Supprimer</button>

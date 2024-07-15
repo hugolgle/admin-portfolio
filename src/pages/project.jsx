@@ -6,7 +6,7 @@ import BtnAdd from '../components/button/btnAdd'
 function Project() {
     const projects = getProjects()
     return <>
-        <h1>Project</h1>
+        <h1>Réalisations</h1>
         <BtnAdd />
         <div className='grid grid-cols-3 gap-4 mt-4'>
             {projects.map((project) => <>
@@ -17,7 +17,6 @@ function Project() {
                         <p>{project.title}</p>
                         <p>{project.mission}</p>
                     </div>
-
                 </Link>
             </>)}
         </div >

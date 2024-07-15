@@ -78,11 +78,27 @@ function UnXpPro() {
         <h2>Le xpPro {leXpPro.id}</h2>
         <BtnReturn />
         <form onSubmit={handleEditSubmit} className='flex flex-col justify-center items-center gap-5 px-36 py-10'>
-            <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedContrat} type="text" name="" id="" placeholder="Contrat" onChange={(e) => { handleContrat(e); }} required />
-            <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedDomaine} type="text" name="" id="" placeholder="Domaine" onChange={(e) => { handleDomaine(e); }} required />
-            <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedAnnee} type="text" name="" id="" placeholder="Annee" onChange={(e) => { handleAnnee(e); }} required />
-            <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedTitre} type="text" name="" id="" placeholder="Titre" onChange={(e) => { handleTitre(e); }} required />
-            <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedMission} type="text" name="" id="" placeholder="Mission" onChange={(e) => { handleMission(e); }} required />
+            <div className='flex w-full items-center'>
+                <label htmlFor="contrat" className='w-1/6'>Contrat : </label>
+                <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedContrat} type="text" name="" id="contrat" placeholder="Contrat" onChange={(e) => { handleContrat(e); }} required />
+            </div>
+            <div className='flex w-full items-center'>
+                <label htmlFor="domaine" className='w-1/6'>Domaine : </label>
+                <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedDomaine} type="text" name="" id="domaine" placeholder="Domaine" onChange={(e) => { handleDomaine(e); }} required />
+            </div>
+            <div className='flex w-full items-center'>
+                <label htmlFor="annee" className='w-1/6'>Année : </label>
+                <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedAnnee} type="text" name="" id="annee" placeholder="Annee" onChange={(e) => { handleAnnee(e); }} required />
+            </div>
+            <div className='flex w-full items-center'>
+                <label htmlFor="titre" className='w-1/6'>Titre : </label>
+                <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedTitre} type="text" name="" id="titre" placeholder="Titre" onChange={(e) => { handleTitre(e); }} required />
+            </div>
+            <div className='flex w-full items-center'>
+                <label htmlFor="mission" className='w-1/6'>Mission : </label>
+                <input className="w-96 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedMission} type="text" name="" id="mission" placeholder="Mission" onChange={(e) => { handleMission(e); }} required />
+
+            </div>
             <button variant="outline" className="rounded-xl w-1/4 hover:border-blue-500">Modifier</button>
         </form>
         <button variant="outline" className="rounded-xl w-1/4 hover:border-red-500" onClick={handleDeleteSubmit}>Supprimer</button>

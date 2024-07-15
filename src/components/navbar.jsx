@@ -23,7 +23,7 @@ export default function Navbar() {
                         <Link to="/xppro" className={`my-1 py-2 rounded text-nowrap hover:bg-zinc-300 transition-all ${activeLink.startsWith('/xppro') ? 'bg-zinc-300' : 'bg-zinc-200'}`}>Experience pro</Link>
                     </div>
                 </div>
-                <div className='relative content w-4/5 ml-auto p-4'>
+                <div className='flex flex-col items-center relative content w-4/5 ml-auto p-4'>
                     <Outlet />
                 </div>
             </section>

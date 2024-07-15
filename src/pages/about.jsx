@@ -36,12 +36,12 @@ function About() {
 
         await dispatch(updateAbout(editData));
         dispatch(getAbout());
-
+        setUpdate(!update)
     };
 
     return <>
         <h1>Présentation</h1>
-        <section className='flex flex-col justify-center items-center gap-4'>
+        <section className='flex flex-col justify-center w-full items-center gap-4'>
             {update ? (
                 <textarea className="w-1/2 h-44 p-4 rounded-xl bg-transparent border-2 border-zinc-300" value={selectedAbout} name="" id="" onChange={(e) => { handleAbout(e); handleInputChange(); }} />
             ) : (
