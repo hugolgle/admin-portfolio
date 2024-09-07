@@ -13,13 +13,15 @@ export const getProjects = async (req, res) => {
 };
 
 export const addProject = async (req, res) => {
-  const { title, date, context, link, mission, skills, technology } = req.body;
+  const { title, date, context, img, link, mission, skills, technology } =
+    req.body;
 
   try {
     const newProject = new ProjectModel({
       title,
       date,
       context,
+      img, // Assure-toi que cela correspond à ce que le modèle attend
       link,
       mission,
       skills,

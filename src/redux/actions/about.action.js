@@ -14,7 +14,7 @@ export const getAbout = () => {
 export const updateAbout = (updatedData) => {
   return (dispatch) => {
     return axios
-      .put(`http://localhost:5001/about/`, updatedData)
+      .put(`http://localhost:5001/about/${updatedData.id}`, updatedData)
       .then(() => {
         dispatch({ type: UPDATE_ABOUT, payload: updatedData });
       })

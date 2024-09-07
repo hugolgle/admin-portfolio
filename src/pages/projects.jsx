@@ -22,7 +22,6 @@ function Projects() {
                 <p>{project.ecole}</p>
                 <p>{project.title}</p>
                 <p>{project.mission}</p>
-                <p>{project.link}</p>
               </div>
             </Link>
           </>

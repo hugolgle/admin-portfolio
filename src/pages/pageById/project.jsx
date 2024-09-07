@@ -45,12 +45,13 @@ function Project() {
 
   // Gestion des liens
   const handleLinkChange = (index, event) => {
+    const { name, value } = event.target;
     const newLinks = [...links];
-    newLinks[index] = event.target.value;
+    newLinks[index] = { ...newLinks[index], [name]: value };
     setLinks(newLinks);
   };
 
-  const handleAddLink = () => setLinks([...links, ""]);
+  const handleAddLink = () => setLinks([...links, { url: "", text: "" }]);
   const handleRemoveLink = (index) =>
     setLinks(links.filter((_, i) => i !== index));
 
@@ -85,7 +86,7 @@ function Project() {
       date: selectedDate,
       context: selectedContext,
       mission: selectedMission,
-      link: links,
+      link: links, // Mise à jour pour inclure l'URL et le texte
       skills: skills,
       technology: technologies,
     };
@@ -177,15 +178,28 @@ function Project() {
         {/* Gestion des liens */}
         {links.map((link, index) => (
           <div key={index} className="flex w-full items-center">
-            <label htmlFor={`link-${index}`} className="w-1/6">
-              Lien {index + 1} :
+            <label htmlFor={`link-url-${index}`} className="w-1/6">
+              Lien {index + 1} URL :
             </label>
             <input
-              className="w-4/6 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300"
-              value={link}
+              className="w-2/6 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300"
+              name="url"
+              value={link.url}
               type="url"
-              id={`link-${index}`}
-              placeholder={`Lien ${index + 1}`}
+              id={`link-url-${index}`}
+              placeholder={`URL ${index + 1}`}
+              onChange={(e) => handleLinkChange(index, e)}
+            />
+            <label htmlFor={`link-text-${index}`} className="w-1/6">
+              Texte :
+            </label>
+            <input
+              className="w-2/6 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300"
+              name="text"
+              value={link.text}
+              type="text"
+              id={`link-text-${index}`}
+              placeholder={`Texte ${index + 1}`}
               onChange={(e) => handleLinkChange(index, e)}
             />
             <button type="button" onClick={() => handleRemoveLink(index)}>
@@ -223,14 +237,14 @@ function Project() {
         {/* Gestion des technologies */}
         {technologies.map((tech, index) => (
           <div key={index} className="flex w-full items-center">
-            <label htmlFor={`tech-${index}`} className="w-1/6">
+            <label htmlFor={`technology-${index}`} className="w-1/6">
               Technologie {index + 1} :
             </label>
             <input
               className="w-4/6 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300"
               value={tech}
               type="text"
-              id={`tech-${index}`}
+              id={`technology-${index}`}
               placeholder={`Technologie ${index + 1}`}
               onChange={(e) => handleTechnologyChange(index, e)}
             />
@@ -243,16 +257,19 @@ function Project() {
           Ajouter une technologie
         </button>
 
-        <button className="rounded-xl w-1/4 hover:border-blue-500">
-          Enregistrer les modifications
-        </button>
+        <div className="flex gap-10">
+          <button type="submit" className="btn btn-primary">
+            Modifier
+          </button>
+          <button
+            type="button"
+            className="btn btn-danger"
+            onClick={handleDeleteSubmit}
+          >
+            Supprimer
+          </button>
+        </div>
       </form>
-      <button
-        className="rounded-xl w-1/4 hover:border-red-500"
-        onClick={handleDeleteSubmit}
-      >
-        Supprimer le projet
-      </button>
     </>
   );
 }
