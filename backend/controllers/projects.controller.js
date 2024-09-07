@@ -13,10 +13,18 @@ export const getProjects = async (req, res) => {
 };
 
 export const addProject = async (req, res) => {
-  const { ecole, title, mission, link } = req.body;
+  const { title, date, context, link, mission, skills, technology } = req.body;
 
   try {
-    const newProject = new ProjectModel({ ecole, title, mission, link });
+    const newProject = new ProjectModel({
+      title,
+      date,
+      context,
+      link,
+      mission,
+      skills,
+      technology,
+    });
     await newProject.save(); // Sauvegarder le projet dans la base de données
 
     return res.status(201).json({
@@ -33,12 +41,12 @@ export const addProject = async (req, res) => {
 
 export const editProject = async (req, res) => {
   const { id } = req.params;
-  const { ecole, title, mission, link } = req.body;
+  const { title, date, context, link, mission, skills, technology } = req.body;
 
   try {
     const updatedProject = await ProjectModel.findByIdAndUpdate(
       id,
-      { ecole, title, mission, link },
+      { title, date, context, link, mission, skills, technology },
       { new: true } // Pour renvoyer le document mis à jour
     );
 

@@ -14,15 +14,31 @@ export const getXpPro = async (req, res) => {
 };
 
 export const addXpPro = async (req, res) => {
-  const { contrat, domaine, annee, titre, mission } = req.body;
+  const {
+    type,
+    domaine,
+    title,
+    mission,
+    context,
+    text,
+    skills,
+    link,
+    date,
+    img,
+  } = req.body;
 
   try {
     const newXpPro = new XpProModel({
-      contrat,
+      type,
       domaine,
-      annee,
-      titre,
+      title,
       mission,
+      context,
+      text,
+      skills,
+      link,
+      date,
+      img,
     });
     await newXpPro.save(); // Sauvegarder l'expérience professionnelle
 
@@ -40,12 +56,23 @@ export const addXpPro = async (req, res) => {
 
 export const editXpPro = async (req, res) => {
   const { id } = req.params;
-  const { contrat, domaine, annee, titre, mission } = req.body;
+  const {
+    type,
+    domaine,
+    title,
+    mission,
+    context,
+    text,
+    skills,
+    link,
+    date,
+    img,
+  } = req.body;
 
   try {
     const updatedXpPro = await XpProModel.findByIdAndUpdate(
       id,
-      { contrat, domaine, annee, titre, mission },
+      { type, domaine, title, mission, context, text, skills, link, date, img },
       { new: true } // Retourner le document mis à jour
     );
 

@@ -1,11 +1,16 @@
 import mongoose from "mongoose";
 
 const XpProSchema = new mongoose.Schema({
-  contrat: { type: String, required: true },
+  type: { type: String, required: true },
   domaine: { type: String, required: true },
-  annee: { type: String, required: true },
-  titre: { type: String, required: true },
+  title: { type: String, required: true },
   mission: { type: String, required: true },
+  context: { type: String, required: true },
+  text: { type: String, required: true },
+  skills: { type: Array, required: true },
+  link: { type: Array, required: true },
+  date: { type: String, required: true },
+  img: { type: Array, required: true },
 });
 
 const XpProModel = mongoose.model("XpPro", XpProSchema);
