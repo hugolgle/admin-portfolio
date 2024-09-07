@@ -13,6 +13,9 @@ import AddProject from "./pages/pageAdd/addProject";
 import XpPro from "./pages/pageById/xpPro";
 import AddXpPro from "./pages/pageAdd/addXpPro";
 import XpPros from "./pages/xpPros";
+import Skills from "./pages/skills";
+import AddSkill from "./pages/pageAdd/addSkill";
+import Skill from "./pages/pageById/skill";
 
 function App() {
   const router = createBrowserRouter([
@@ -51,6 +54,18 @@ function App() {
         {
           path: "/projects/:id",
           element: <Project />,
+        },
+        {
+          path: "/skills",
+          element: <Skills />,
+        },
+        {
+          path: "/skills/add",
+          element: <AddSkill />,
+        },
+        {
+          path: "/skills/:id",
+          element: <Skill />,
         },
         {
           path: "/xpPro",

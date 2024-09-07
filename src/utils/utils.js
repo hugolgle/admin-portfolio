@@ -23,6 +23,15 @@ export const useXpProById = (id) => {
   return xpPros.find((xpPro) => xpPro._id === id);
 };
 
+export const useSkills = () => {
+  return useSelector((state) => state.skillsReducer || []);
+};
+
+export const useSkillsById = (id) => {
+  const skills = useSelector((state) => state.skillsReducer || []);
+  return skills.find((skill) => skill._id === id);
+};
+
 export const useCareers = () => {
   return useSelector((state) => state.careersReducer || []);
 };

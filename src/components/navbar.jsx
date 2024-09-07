@@ -31,13 +31,19 @@ export default function Navbar() {
               to="/careers"
               className={`my-1 py-2 rounded hover:bg-zinc-300 transition-all ${activeLink.startsWith("/careers") ? "bg-zinc-300" : "bg-zinc-200"}`}
             >
-              Careers
+              Parcours
             </Link>
             <Link
               to="/projects"
               className={`my-1 py-2 rounded text-nowrap hover:bg-zinc-300 transition-all ${activeLink.startsWith("/projects") ? "bg-zinc-300" : "bg-zinc-200"}`}
             >
               Réalisations
+            </Link>
+            <Link
+              to="/skills"
+              className={`my-1 py-2 rounded text-nowrap hover:bg-zinc-300 transition-all ${activeLink.startsWith("/skills") ? "bg-zinc-300" : "bg-zinc-200"}`}
+            >
+              Compétences
             </Link>
             <Link
               to="/xppro"
