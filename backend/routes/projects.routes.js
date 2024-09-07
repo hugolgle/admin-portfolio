@@ -1,7 +1,11 @@
-import express from 'express';
-import { addProject, deleteProject, editProject, getProjects } from '../controllers/projects.js';
-
+import express from "express";
 const router = express.Router();
+import {
+  addProject,
+  deleteProject,
+  editProject,
+  getProjects,
+} from "../controllers/projects.controller.js";
 
 router.get("/", getProjects);
 router.post("/", addProject);

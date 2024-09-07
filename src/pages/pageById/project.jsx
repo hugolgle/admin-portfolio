@@ -1,24 +1,30 @@
-import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { getProjectById } from "../../utils/utils";
 import { useDispatch } from "react-redux";
-
+import { useState } from "react";
 import {
-  addProject,
+  deleteProject,
+  editProject,
   getAllProjects,
 } from "../../redux/actions/projects.action";
 import { useNavigate } from "react-router-dom";
 import BtnReturn from "../../components/button/btnReturn";
 
-function AddProject() {
+function Project() {
+  const { id } = useParams();
+
+  const leProject = getProjectById(id);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [selectedEcole, setSelectedEcole] = useState("");
+  const [selectedEcole, setSelectedEcole] = useState(leProject.ecole);
 
-  const [selectedTitle, setSelectedTitle] = useState("");
+  const [selectedTitle, setSelectedTitle] = useState(leProject.title);
 
-  const [selectedMission, setSelectedMission] = useState("");
+  const [selectedMission, setSelectedMission] = useState(leProject.mission);
 
-  const [selectedLink, setSelectedLink] = useState("");
+  const [selectedLink, setSelectedLink] = useState(leProject.link);
 
   const handleEcole = (event) => {
     setSelectedEcole(event.target.value);
@@ -36,10 +42,11 @@ function AddProject() {
     setSelectedLink(event.target.value);
   };
 
-  const handleSubmit = async (event) => {
+  const handleEditSubmit = async (event) => {
     event.preventDefault();
 
     const postData = {
+      id: leProject.id,
       ecole: selectedEcole,
       title: selectedTitle,
       mission: selectedMission,
@@ -47,20 +54,26 @@ function AddProject() {
     };
 
     try {
-      await dispatch(addProject(postData));
+      await dispatch(editProject(postData));
       dispatch(getAllProjects());
-      navigate("/projects");
     } catch (err) {
       console.log("Une erreur s'est produite lors de l'ajout du projet", err);
     }
   };
 
+  const handleDeleteSubmit = async (event) => {
+    event.preventDefault();
+    await dispatch(deleteProject(id));
+    dispatch(getAllProjects());
+    navigate("/projects");
+  };
+
   return (
     <>
-      <h1 className="text-5xl font-thin">Ajouter un projet</h1>
+      <h2>Le projet {leProject.id}</h2>
       <BtnReturn />
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleEditSubmit}
         className="flex flex-col justify-center items-center gap-5 px-36 py-10 w-1/2"
       >
         <div className="flex w-full items-center">
@@ -135,8 +148,14 @@ function AddProject() {
           Envoyer
         </button>
       </form>
+      <button
+        className="rounded-xl w-1/4 hover:border-red-500"
+        onClick={handleDeleteSubmit}
+      >
+        Supprimer
+      </button>
     </>
   );
 }
 
-export default AddProject;
+export default Project;
