@@ -15,8 +15,9 @@ function AddXpPro() {
   const [selectedMission, setSelectedMission] = useState("");
   const [selectedContext, setSelectedContext] = useState("");
   const [selectedText, setSelectedText] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
   const [skills, setSkills] = useState([""]);
-  const [links, setLinks] = useState([""]);
+  const [links, setLinks] = useState([{ url: "", text: "" }]);
   const [images, setImages] = useState([]);
 
   const handleType = (event) => setSelectedType(event.target.value);
@@ -25,6 +26,7 @@ function AddXpPro() {
   const handleMission = (event) => setSelectedMission(event.target.value);
   const handleContext = (event) => setSelectedContext(event.target.value);
   const handleText = (event) => setSelectedText(event.target.value);
+  const handleDate = (event) => setSelectedDate(event.target.value);
 
   const handleSkillChange = (index, event) => {
     const newSkills = [...skills];
@@ -36,13 +38,13 @@ function AddXpPro() {
   const handleRemoveSkill = (index) =>
     setSkills(skills.filter((_, i) => i !== index));
 
-  const handleLinkChange = (index, event) => {
+  const handleLinkChange = (index, field, event) => {
     const newLinks = [...links];
-    newLinks[index] = event.target.value;
+    newLinks[index][field] = event.target.value;
     setLinks(newLinks);
   };
 
-  const handleAddLink = () => setLinks([...links, ""]);
+  const handleAddLink = () => setLinks([...links, { url: "", text: "" }]);
   const handleRemoveLink = (index) =>
     setLinks(links.filter((_, i) => i !== index));
 
@@ -61,8 +63,8 @@ function AddXpPro() {
       context: selectedContext,
       text: selectedText,
       skills: skills,
-      link: links,
-      date: new Date().toISOString(), // Assuming date is set to current date
+      links: links, // Updated to include both URL and text
+      date: selectedDate, // Assuming date is set to current date
       img: images.map((file) => URL.createObjectURL(file)), // Temporary URLs for preview
     };
 
@@ -124,6 +126,21 @@ function AddXpPro() {
             id="title"
             placeholder="Titre"
             onChange={handleTitle}
+            required
+          />
+        </div>
+
+        <div className="flex w-full items-center">
+          <label htmlFor="date" className="w-1/6">
+            Date :
+          </label>
+          <input
+            className="w-5/6 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300"
+            value={selectedDate}
+            type="text"
+            id="date"
+            placeholder="Date"
+            onChange={handleDate}
             required
           />
         </div>
@@ -199,16 +216,24 @@ function AddXpPro() {
         {/* Gestion des liens */}
         {links.map((link, index) => (
           <div key={index} className="flex w-full items-center">
-            <label htmlFor={`link-${index}`} className="w-1/6">
+            <label htmlFor={`url-${index}`} className="w-1/6">
               Lien {index + 1} :
             </label>
             <input
               className="w-4/6 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300"
-              value={link}
+              value={link.url}
               type="url"
-              id={`link-${index}`}
-              placeholder={`Lien ${index + 1}`}
-              onChange={(e) => handleLinkChange(index, e)}
+              id={`url-${index}`}
+              placeholder={`URL du lien ${index + 1}`}
+              onChange={(e) => handleLinkChange(index, "url", e)}
+            />
+            <input
+              className="w-4/6 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300 mt-2"
+              value={link.text}
+              type="text"
+              id={`text-${index}`}
+              placeholder={`Texte du lien ${index + 1}`}
+              onChange={(e) => handleLinkChange(index, "text", e)}
             />
             <button type="button" onClick={() => handleRemoveLink(index)}>
               Retirer
