@@ -29,7 +29,7 @@ export const addProject = (project) => {
 export const editProject = (project) => {
   return (dispatch) => {
     return axios
-      .put(`http://localhost:5001/projects/${project.id}`, project)
+      .put(`http://localhost:5001/projects/${project._id}`, project)
       .then((res) => {
         dispatch({ type: EDIT_PROJECT, payload: res.data });
       })

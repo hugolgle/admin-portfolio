@@ -1,10 +1,11 @@
 import { useParams } from "react-router-dom";
-import { getCareersById } from "../../utils/utils";
+import { useCareersById } from "../../utils/utils";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import {
   deleteCareers,
   editCareers,
+  // getCareer,
   getCareers,
 } from "../../redux/actions/careers.action";
 import { useNavigate } from "react-router-dom";
@@ -12,16 +13,13 @@ import BtnReturn from "../../components/button/btnReturn";
 
 function Career() {
   const { id } = useParams();
-
-  const leCareers = getCareersById(id);
-
+  const leCareers = useCareersById(id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [selectedDate, setSelectedDate] = useState(leCareers.date);
-
+  const [selectedDate, setSelectedDate] = useState(leCareers?.date);
   const [selectedDescription, setSelectedDescription] = useState(
-    leCareers.description
+    leCareers?.description
   );
 
   const handleDate = (event) => {
@@ -36,7 +34,7 @@ function Career() {
     event.preventDefault();
 
     const postData = {
-      id: leCareers.id,
+      id: leCareers?._id,
       date: selectedDate,
       description: selectedDescription,
     };
@@ -56,9 +54,14 @@ function Career() {
     navigate("/careers");
   };
 
+  // Ajouter un rendu conditionnel si `leCareers` n'est pas encore chargé
+  if (!leCareers) {
+    return <div>Chargement...</div>;
+  }
+
   return (
     <>
-      <h2>Le careers {leCareers.id}</h2>
+      <h2>Le careers {leCareers._id}</h2>
       <BtnReturn />
       <form
         onSubmit={handleEditSubmit}
@@ -75,9 +78,7 @@ function Career() {
             name=""
             id="date"
             placeholder="Date"
-            onChange={(e) => {
-              handleDate(e);
-            }}
+            onChange={(e) => handleDate(e)}
             required
           />
         </div>
@@ -92,9 +93,7 @@ function Career() {
             name=""
             id=""
             placeholder="Description"
-            onChange={(e) => {
-              handleDescription(e);
-            }}
+            onChange={(e) => handleDescription(e)}
             required
           />
         </div>

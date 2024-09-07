@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const CareersSchema = new mongoose.Schema({
-  date: { type: Date, required: true },
+  date: { type: String, required: true },
   description: { type: String, required: true },
 });
 

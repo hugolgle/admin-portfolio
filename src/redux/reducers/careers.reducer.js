@@ -3,12 +3,15 @@ import {
   DELETE_CAREERS,
   EDIT_CAREERS,
   GET_CAREERS,
+  GET_CAREER,
 } from "../actions/careers.action";
 
 const initialState = [];
 
 export default function careersReducer(state = initialState, action) {
   switch (action.type) {
+    case GET_CAREER:
+      return action.payload;
     case GET_CAREERS:
       return action.payload;
     case ADD_CAREERS:

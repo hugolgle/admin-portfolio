@@ -32,7 +32,7 @@ export const addXpPro = (xpPro) => {
 export const editXpPro = (xpPro) => {
   return (dispatch) => {
     return axios
-      .put(`http://localhost:5001/xpPro/${xpPro.id}`, xpPro)
+      .put(`http://localhost:5001/xpPro/${xpPro._id}`, xpPro)
       .then((res) => {
         dispatch({ type: EDIT_XPPRO, payload: res.data });
       })

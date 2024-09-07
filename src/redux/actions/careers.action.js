@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const GET_CAREERS = "GET_CAREERS";
+export const GET_CAREER = "GET_CAREER";
 export const ADD_CAREERS = "ADD_CAREERS";
 export const EDIT_CAREERS = "EDIT_CAREERS";
 export const DELETE_CAREERS = "DELETE_CAREERS";
@@ -9,6 +10,14 @@ export const getCareers = () => {
   return (dispatch) => {
     return axios.get("http://localhost:5001/careers").then((res) => {
       dispatch({ type: GET_CAREERS, payload: res.data });
+    });
+  };
+};
+
+export const getCareer = (id) => {
+  return (dispatch) => {
+    return axios.get(`http://localhost:5001/careers/${id}`).then((res) => {
+      dispatch({ type: GET_CAREER, payload: res.data });
     });
   };
 };

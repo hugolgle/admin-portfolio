@@ -1,9 +1,9 @@
-import { getXpPro } from "../utils/utils";
+import { useXpPro } from "../utils/utils";
 import { Link } from "react-router-dom";
 import BtnAdd from "../components/button/btnAdd";
 
 function XpPros() {
-  const xpPro = getXpPro();
+  const xpPro = useXpPro();
 
   return (
     <>

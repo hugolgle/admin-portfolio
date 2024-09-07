@@ -1,9 +1,9 @@
-import { getProjects } from "../utils/utils";
+import { useProjects } from "../utils/utils";
 import { Link } from "react-router-dom";
 import BtnAdd from "../components/button/btnAdd";
 
 function Projects() {
-  const projects = getProjects();
+  const projects = useProjects();
   return (
     <>
       <h1>Réalisations</h1>

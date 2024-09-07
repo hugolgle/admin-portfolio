@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { getProjectById } from "../../utils/utils";
+import { useProjectById } from "../../utils/utils";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import {
@@ -13,7 +13,7 @@ import BtnReturn from "../../components/button/btnReturn";
 function Project() {
   const { id } = useParams();
 
-  const leProject = getProjectById(id);
+  const leProject = useProjectById(id);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

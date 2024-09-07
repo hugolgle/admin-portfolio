@@ -12,6 +12,18 @@ export const getCareers = async (req, res) => {
   }
 };
 
+export const getCareer = async (req, res) => {
+  try {
+    const career = await CareersModel.findById(req.params.id);
+    return res.status(200).json(career);
+  } catch (error) {
+    return res.status(500).json({
+      message: "Erreur lors de la récupération de l'transaction",
+      error,
+    });
+  }
+};
+
 export const addCareers = async (req, res) => {
   const { description, date } = req.body;
 

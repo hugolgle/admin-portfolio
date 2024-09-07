@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { getXpProById } from "../../utils/utils";
+import { useXpProById } from "../../utils/utils";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import {
@@ -13,7 +13,7 @@ import BtnReturn from "../../components/button/btnReturn";
 function XpPro() {
   const { id } = useParams();
 
-  const leXpPro = getXpProById(id);
+  const leXpPro = useXpProById(id);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

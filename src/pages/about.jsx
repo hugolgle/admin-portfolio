@@ -1,10 +1,11 @@
-import { getAbout } from "../utils/utils";
+import { useAbout } from "../utils/utils";
+import { getAbout } from "../redux/actions/about.action";
 import { updateAbout } from "../redux/actions/about.action";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 function About() {
-  const about = getAbout();
+  const about = useAbout();
 
   const [selectedAbout, setSelectedAbout] = useState(about[0].text);
 
@@ -29,7 +30,7 @@ function About() {
 
   const handleEditAbout = async () => {
     const editData = {
-      id: about[0].id,
+      id: about[0]._id,
       text: selectedAbout,
     };
 
