@@ -13,11 +13,11 @@ function XpPros() {
         {xpPro.map((xpPro) => (
           <>
             <Link
-              to={`${xpPro.id}`}
+              to={`${xpPro._id}`}
               className="flex flex-row items-center bg-zinc-300 overflow-hidden rounded hover:scale-95 transition-all"
             >
               <p className="flex items-center px-5 bg-zinc-400 h-full">
-                {xpPro.id}
+                {xpPro._id}
               </p>
               <div className="p-4 w-full">
                 <p className="italic text-sm mb-4">{xpPro.annee}</p>
