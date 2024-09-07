@@ -12,11 +12,11 @@ function Projects() {
         {projects.map((project) => (
           <>
             <Link
-              to={`${project.id}`}
+              to={`${project._id}`}
               className="flex flex-row items-center bg-zinc-300 overflow-hidden rounded hover:scale-95 transition-all"
             >
               <p className="flex items-center px-5 bg-zinc-400 h-full">
-                {project.id}
+                {project._id}
               </p>
               <div className="p-4 w-full">
                 <p>{project.ecole}</p>

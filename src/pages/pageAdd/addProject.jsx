@@ -12,38 +12,61 @@ function AddProject() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [selectedEcole, setSelectedEcole] = useState("");
-
   const [selectedTitle, setSelectedTitle] = useState("");
-
   const [selectedMission, setSelectedMission] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedContext, setSelectedContext] = useState("");
+  const [links, setLinks] = useState([""]);
+  const [skills, setSkills] = useState([""]);
+  const [technologies, setTechnologies] = useState([""]);
 
-  const [selectedLink, setSelectedLink] = useState("");
+  const handleTitle = (event) => setSelectedTitle(event.target.value);
+  const handleMission = (event) => setSelectedMission(event.target.value);
+  const handleDate = (event) => setSelectedDate(event.target.value);
+  const handleContext = (event) => setSelectedContext(event.target.value);
 
-  const handleEcole = (event) => {
-    setSelectedEcole(event.target.value);
+  // Gestion des tableaux dynamiques
+  const handleLinkChange = (index, event) => {
+    const newLinks = [...links];
+    newLinks[index] = event.target.value;
+    setLinks(newLinks);
   };
 
-  const handleTitle = (event) => {
-    setSelectedTitle(event.target.value);
+  const handleAddLink = () => setLinks([...links, ""]);
+  const handleRemoveLink = (index) =>
+    setLinks(links.filter((_, i) => i !== index));
+
+  const handleSkillChange = (index, event) => {
+    const newSkills = [...skills];
+    newSkills[index] = event.target.value;
+    setSkills(newSkills);
   };
 
-  const handleMission = (event) => {
-    setSelectedMission(event.target.value);
+  const handleAddSkill = () => setSkills([...skills, ""]);
+  const handleRemoveSkill = (index) =>
+    setSkills(skills.filter((_, i) => i !== index));
+
+  const handleTechnologyChange = (index, event) => {
+    const newTechnologies = [...technologies];
+    newTechnologies[index] = event.target.value;
+    setTechnologies(newTechnologies);
   };
 
-  const handleLink = (event) => {
-    setSelectedLink(event.target.value);
-  };
+  const handleAddTechnology = () => setTechnologies([...technologies, ""]);
+  const handleRemoveTechnology = (index) =>
+    setTechnologies(technologies.filter((_, i) => i !== index));
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const postData = {
-      ecole: selectedEcole,
       title: selectedTitle,
+      date: selectedDate,
+      context: selectedContext,
+      link: links,
       mission: selectedMission,
-      link: selectedLink,
+      skills: skills,
+      technology: technologies,
     };
 
     try {
@@ -64,23 +87,6 @@ function AddProject() {
         className="flex flex-col justify-center items-center gap-5 px-36 py-10 w-1/2"
       >
         <div className="flex w-full items-center">
-          <label htmlFor="ecole" className="w-1/6">
-            École :{" "}
-          </label>
-          <input
-            className="w-5/6 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300"
-            value={selectedEcole}
-            type="text"
-            name=""
-            id="ecole"
-            placeholder="Ecole"
-            onChange={(e) => {
-              handleEcole(e);
-            }}
-            required
-          />
-        </div>
-        <div className="flex w-full items-center">
           <label htmlFor="title" className="w-1/6">
             Titre :{" "}
           </label>
@@ -88,15 +94,28 @@ function AddProject() {
             className="w-5/6 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300"
             value={selectedTitle}
             type="text"
-            name=""
             id="title"
             placeholder="Titre"
-            onChange={(e) => {
-              handleTitle(e);
-            }}
+            onChange={handleTitle}
             required
           />
         </div>
+
+        <div className="flex w-full items-center">
+          <label htmlFor="date" className="w-1/6">
+            Date :{" "}
+          </label>
+          <input
+            className="w-5/6 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300"
+            value={selectedDate}
+            type="text"
+            id="date"
+            placeholder="Date"
+            onChange={handleDate}
+            required
+          />
+        </div>
+
         <div className="flex w-full items-center">
           <label htmlFor="mission" className="w-1/6">
             Mission :{" "}
@@ -105,32 +124,97 @@ function AddProject() {
             className="w-5/6 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300"
             value={selectedMission}
             type="text"
-            name=""
             id="mission"
-            placeholder="Mission"
-            onChange={(e) => {
-              handleMission(e);
-            }}
+            placeholder="Titre"
+            onChange={handleMission}
             required
           />
         </div>
+
         <div className="flex w-full items-center">
-          <label htmlFor="link" className="w-1/6">
-            Lien :{" "}
+          <label htmlFor="context" className="w-1/6">
+            Contexte :{" "}
           </label>
           <input
             className="w-5/6 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300"
-            value={selectedLink}
-            type="url"
-            name=""
-            id="link"
-            placeholder="Lien"
-            onChange={(e) => {
-              handleLink(e);
-            }}
+            value={selectedContext}
+            type="text"
+            id="context"
+            placeholder="Contexte"
+            onChange={handleContext}
             required
           />
         </div>
+
+        {/* Gestion des liens */}
+        {links.map((link, index) => (
+          <div key={index} className="flex w-full items-center">
+            <label htmlFor={`link-${index}`} className="w-1/6">
+              Lien {index + 1} :
+            </label>
+            <input
+              className="w-4/6 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300"
+              value={link}
+              type="url"
+              id={`link-${index}`}
+              placeholder={`Lien ${index + 1}`}
+              onChange={(e) => handleLinkChange(index, e)}
+            />
+            <button type="button" onClick={() => handleRemoveLink(index)}>
+              Retirer
+            </button>
+          </div>
+        ))}
+        <button type="button" onClick={handleAddLink}>
+          Ajouter un lien
+        </button>
+
+        {/* Gestion des skills */}
+        {skills.map((skill, index) => (
+          <div key={index} className="flex w-full items-center">
+            <label htmlFor={`skill-${index}`} className="w-1/6">
+              Compétence {index + 1} :
+            </label>
+            <input
+              className="w-4/6 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300"
+              value={skill}
+              type="text"
+              id={`skill-${index}`}
+              placeholder={`Compétence ${index + 1}`}
+              onChange={(e) => handleSkillChange(index, e)}
+            />
+            <button type="button" onClick={() => handleRemoveSkill(index)}>
+              Retirer
+            </button>
+          </div>
+        ))}
+        <button type="button" onClick={handleAddSkill}>
+          Ajouter une compétence
+        </button>
+
+        {/* Gestion des technologies */}
+        {technologies.map((tech, index) => (
+          <div key={index} className="flex w-full items-center">
+            <label htmlFor={`tech-${index}`} className="w-1/6">
+              Technologie {index + 1} :
+            </label>
+            <input
+              className="w-4/6 h-10 px-2 rounded-xl bg-transparent border-2 border-zinc-300"
+              value={tech}
+              type="text"
+              id={`tech-${index}`}
+              placeholder={`Technologie ${index + 1}`}
+              onChange={(e) => handleTechnologyChange(index, e)}
+            />
+            <button type="button" onClick={() => handleRemoveTechnology(index)}>
+              Retirer
+            </button>
+          </div>
+        ))}
+        <button type="button" onClick={handleAddTechnology}>
+          Ajouter une technologie
+        </button>
+
         <button className="rounded-xl w-1/4 hover:border-blue-500">
           Envoyer
         </button>
